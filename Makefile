@@ -126,7 +126,7 @@ mpy-compile: check-mpy-version check-mpy-target
 
 	@echo "$(INFO) Ahead-of-time compiling to .mpy $(MPY_TARGET)"
 
-	$(eval mpy_path := lib-mpy-$(MPY_VERSION)-$(MPY_TARGET))
+	$(eval mpy_path := lib-mpy-$(MPY_TARGET))
 
 	@echo "$(INFO) Populating folder \"$(mpy_path)\""
 	@rm -rf $(mpy_path)
@@ -175,7 +175,7 @@ pyboard-install: check-mpy-version check-mpy-target
 
 	@if test -e "/Volumes/PYBFLASH"; then \
 		rsync -auv lib/umal.py lib/mininet.py /Volumes/PYBFLASH/lib; \
-		rsync -auv lib-mpy-$(MPY_VERSION)-$(MPY_TARGET) /Volumes/PYBFLASH; \
+		rsync -auv lib-mpy-$(MPY_TARGET) /Volumes/PYBFLASH; \
 		rsync -auv boot.py main.py /Volumes/PYBFLASH; \
 		cp settings.pybd.py /Volumes/PYBFLASH/settings.py; \
 	else \
