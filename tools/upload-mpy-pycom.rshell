@@ -3,10 +3,10 @@
 # Upload lib folder
 #rsync ./lib /flash/lib
 
-mkdir /flash/lib-mpy-pycom
-rsync -m lib-mpy-pycom /flash/lib-mpy-pycom
+mkdir /flash/lib-mpy
+rsync -m lib-mpy /flash/lib-mpy
 
-cp lib-mpy-pycom/umal.mpy /flash/lib
+cp lib-mpy/umal.mpy /flash/lib
 
 cp pybytes_config.json /flash
 

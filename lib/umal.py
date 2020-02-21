@@ -120,12 +120,11 @@ class MicroPythonBootloader:
         import sys
 
         # Extend by path containing frozen modules.
+        bytecode_path = 'lib-mpy'
         if self.platform_info.vendor == self.platform_info.MICROPYTHON.Pycom:
-            bytecode_path = 'lib-mpy-pycom'
             sys.path[0:0] = ['/flash/{}'.format(bytecode_path)]
             sys.path.extend(['/flash/dist-packages', '/flash/terkin'])
         elif self.platform_info.vendor == self.platform_info.MICROPYTHON.Vanilla:
-            bytecode_path = 'lib-mpy-bytecode'
             sys.path[0:0] = ['/{}'.format(bytecode_path)]
             sys.path.extend(['/dist-packages', '/terkin'])
         else:
