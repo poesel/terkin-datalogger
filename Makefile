@@ -238,37 +238,37 @@ install-ng: check-mcu-port
 	@$(MAKE) notify status=OK status_ansi="$(OK)" message="MicroPython code upload finished"
 
 install-requirements: check-mcu-port
-	if test "${MPY_TARGET}" = "pycom"; then \
+	@if test "${MPY_TARGET}" = "pycom"; then \
 		$(rshell) $(rshell_options) mkdir /flash/dist-packages; \
 		$(rshell) $(rshell_options) rsync dist-packages /flash/dist-packages; \
-	else
+	else \
 		$(rshell) $(rshell_options) mkdir /pyboard/dist-packages; \
 		$(rshell) $(rshell_options) rsync dist-packages /pyboard/dist-packages; \
 	fi
 
 install-framework: check-mcu-port
-	if test "${MPY_TARGET}" = "pycom"; then \
+	@if test "${MPY_TARGET}" = "pycom"; then \
 		$(rshell) $(rshell_options) --file tools/upload-framework-pycom.rshell; \
 	else \
 		$(rshell) $(rshell_options) --file tools/upload-framework-genuine.rshell; \
 	fi
 
 install-sketch: check-mcu-port
-	if test "${MPY_TARGET}" = "pycom"; then \
-		$(rshell) $(rshell_options) --file tools/upload-sketch-pycom.rshell
+	@if test "${MPY_TARGET}" = "pycom"; then \
+		$(rshell) $(rshell_options) --file tools/upload-sketch-pycom.rshell; \
 	else \
-		$(rshell) $(rshell_options) --file tools/upload-sketch-genuine.rshell
+		$(rshell) $(rshell_options) --file tools/upload-sketch-genuine.rshell; \
 	fi
 
 refresh-requirements: check-mcu-port
-	rm -r dist-packages
+	@rm -r dist-packages
 	$(MAKE) download-requirements
-	if test "${MPY_TARGET}" = "pycom"; then \
-		$(rshell) $(rshell_options) rm -r /flash/dist-packages
-		$(rshell) $(rshell_options) ls /flash/dist-packages
+	@if test "${MPY_TARGET}" = "pycom"; then \
+		$(rshell) $(rshell_options) rm -r /flash/dist-packages; \
+		$(rshell) $(rshell_options) ls /flash/dist-packages; \
 	else; \
-		$(rshell) $(rshell_options) rm -r /pyboard/dist-packages
-		$(rshell) $(rshell_options) ls /pyboard/dist-packages
+		$(rshell) $(rshell_options) rm -r /pyboard/dist-packages; \
+		$(rshell) $(rshell_options) ls /pyboard/dist-packages; \
 	fi
 	$(MAKE) install-requirements
 
@@ -280,19 +280,17 @@ terkin: install-terkin
 ratrack: install-ratrack
 
 terkin: check-mcu-port
-	@#$(rshell) $(rshell_options) --file tools/upload-framework.rshell
-	if test "${MPY_TARGET}" = "pycom"; then \
-		$(rshell) $(rshell_options) --file tools/upload-terkin-pycom.rshell
+	@if test "${MPY_TARGET}" = "pycom"; then \
+		$(rshell) $(rshell_options) --file tools/upload-terkin-pycom.rshell; \
 	else; \
-		$(rshell) $(rshell_options) --file tools/upload-terkin-genuine.rshell
+		$(rshell) $(rshell_options) --file tools/upload-terkin-genuine.rshell; \
 	fi
 
 ratrack: check-mcu-port
-	# $(rshell) $(rshell_options) --file tools/upload-framework.rshell
-	if test "${MPY_TARGET}" = "pycom"; then \
-		$(rshell) $(rshell_options) --file tools/upload-ratrack-pycom.rshell
-	else
-		$(rshell) $(rshell_options) --file tools/upload-ratrack-genuine.rshell
+	@if test "${MPY_TARGET}" = "pycom"; then \
+		$(rshell) $(rshell_options) --file tools/upload-ratrack-pycom.rshell; \
+	else \
+		$(rshell) $(rshell_options) --file tools/upload-ratrack-genuine.rshell; \
 	fi
 
 
