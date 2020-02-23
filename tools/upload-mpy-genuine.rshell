@@ -6,6 +6,7 @@
 mkdir /pyboard/lib-mpy
 rsync -m lib-mpy /pyboard/lib-mpy
 
+mkdir /pyboard/lib
 cp lib-mpy/umal.mpy /pyboard/lib
 
 cp pybytes_config.json /pyboard

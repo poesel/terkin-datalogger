@@ -240,10 +240,10 @@ install-ng: check-mcu-port
 install-requirements: check-mcu-port
 	@if test "${MPY_TARGET}" = "pycom"; then \
 		$(rshell) $(rshell_options) mkdir /flash/dist-packages; \
-		$(rshell) $(rshell_options) rsync dist-packages /flash/dist-packages; \
+		$(rshell) $(rshell_options) rsync -m dist-packages /flash/dist-packages; \
 	else \
 		$(rshell) $(rshell_options) mkdir /pyboard/dist-packages; \
-		$(rshell) $(rshell_options) rsync dist-packages /pyboard/dist-packages; \
+		$(rshell) $(rshell_options) rsync -m dist-packages /pyboard/dist-packages; \
 	fi
 
 install-framework: check-mcu-port
